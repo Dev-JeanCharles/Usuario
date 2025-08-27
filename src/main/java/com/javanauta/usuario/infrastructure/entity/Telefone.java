@@ -11,7 +11,6 @@ import lombok.*;
 @Table(name = "tb_telefone")
 @Builder
 public class Telefone {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
