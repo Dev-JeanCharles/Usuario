@@ -1,4 +1,4 @@
-package com.javanauta.usuario.infrastructure.entity;
+package com.javanauta.usuario.infrastructure.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "tb_usuario")
 @Builder
-public class Usuario implements UserDetails {
+public class UsuarioEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,10 +27,10 @@ public class Usuario implements UserDetails {
     private String senha;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private List<Endereco> endereco;
+    private List<EnderecoEntity> enderecoEntity;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    private List<Telefone> telefone;
+    private List<TelefoneEntity> telefoneEntity;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

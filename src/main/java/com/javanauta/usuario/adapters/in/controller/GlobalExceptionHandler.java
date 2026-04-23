@@ -1,4 +1,4 @@
-package com.javanauta.usuario.controller;
+package com.javanauta.usuario.adapters.in.controller;
 
 import com.javanauta.usuario.infrastructure.exceptions.ConflictException;
 import com.javanauta.usuario.infrastructure.exceptions.ResourceNotFoundException;

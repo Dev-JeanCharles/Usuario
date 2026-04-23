@@ -1,19 +1,19 @@
 package com.javanauta.usuario.infrastructure.repository;
 
-import com.javanauta.usuario.infrastructure.entity.Usuario;
-import jakarta.transaction.Transactional;
+import com.javanauta.usuario.infrastructure.entities.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
 
     boolean existsByEmail(String email);
 
-    Optional<Usuario> findByEmail(String email);
+    Optional<UsuarioEntity> findByEmail(String email);
 
-    @Transactional
+    @Modifying
     void deleteByEmail(String email);
 }

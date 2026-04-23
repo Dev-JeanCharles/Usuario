@@ -1,4 +1,4 @@
-package com.javanauta.usuario.infrastructure.entity;
+package com.javanauta.usuario.infrastructure.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @Entity
 @Table(name = "tb_telefone")
 @Builder
-public class Telefone {
+public class TelefoneEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
