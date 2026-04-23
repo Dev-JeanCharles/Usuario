@@ -1,4 +1,4 @@
-package com.javanauta.usuario.adapters.in.controller;
+package com.javanauta.usuario.adapters.in;
 
 import com.javanauta.usuario.application.service.UsuarioService;
 import com.javanauta.usuario.application.dto.EnderecoDTO;
