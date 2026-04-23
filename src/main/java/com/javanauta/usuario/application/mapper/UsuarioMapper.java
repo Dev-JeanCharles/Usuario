@@ -62,14 +62,11 @@ public class UsuarioMapper {
     }
 
     public Usuario atualizaUsuario(UsuarioDTO dto, Usuario usuario) {
-        return Usuario.builder()
-                .id(usuario.getId())
-                .nome(dto.getNome() != null ? dto.getNome() : usuario.getNome())
-                .senha(dto.getSenha() != null ? dto.getSenha() : usuario.getSenha())
-                .email(dto.getEmail() != null ? dto.getEmail() : usuario.getEmail())
-                .enderecos(usuario.getEnderecos())
-                .telefones(usuario.getTelefones())
-                .build();
+        if(dto.getNome() != null) usuario.setNome(dto.getNome());
+        if(dto.getSenha() != null) usuario.setSenha(dto.getSenha());
+        if(dto.getEmail() != null) usuario.setEmail(dto.getEmail());
+
+        return usuario;
     }
 
     public Endereco atualizaEndereco(EnderecoDTO dto, Endereco endereco) {

@@ -9,7 +9,9 @@ import com.javanauta.usuario.infrastructure.entities.TelefoneEntity;
 import com.javanauta.usuario.infrastructure.entities.UsuarioEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UsuarioEntityMapper {
@@ -56,7 +58,7 @@ public class UsuarioEntityMapper {
 
         return enderecos.stream()
                 .map(endereco -> paraEnderecoEntity(endereco, usuarioId))
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public List<Endereco> paraListaEnderecoDomain(List<EnderecoEntity> entities) {
@@ -74,7 +76,7 @@ public class UsuarioEntityMapper {
                                 .estado(entity.getEstado())
                                 .numero(entity.getNumero())
                                 .build()
-                ).toList();
+                ).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public EnderecoEntity atualizaEndereco(EnderecoDTO enderecoDTO, EnderecoEntity entity) {
@@ -101,7 +103,7 @@ public class UsuarioEntityMapper {
     public List<TelefoneEntity> paraListaTelefoneEntity(List<Telefone> telefones, Long usuarioId) {
         return telefones.stream()
                 .map(telefone -> paraTelefoneEntity(telefone, usuarioId))
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public List<Telefone> paraListaTelefoneDomain(List<TelefoneEntity> entities) {
@@ -115,6 +117,6 @@ public class UsuarioEntityMapper {
                                 .numero(entity.getNumero())
                                 .ddd(entity.getDdd())
                                 .build()
-                ).toList();
+                ).collect(Collectors.toCollection(ArrayList::new));
     }
 }
