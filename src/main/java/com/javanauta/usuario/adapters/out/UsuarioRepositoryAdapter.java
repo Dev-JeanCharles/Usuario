@@ -1,7 +1,7 @@
 package com.javanauta.usuario.adapters.out;
 
 import com.javanauta.usuario.domain.model.Usuario;
-import com.javanauta.usuario.domain.ports.UsuarioRepositoryPort;
+import com.javanauta.usuario.domain.ports.out.UsuarioRepositoryPort;
 import com.javanauta.usuario.infrastructure.entities.UsuarioEntity;
 import com.javanauta.usuario.infrastructure.mapper.UsuarioEntityMapper;
 import com.javanauta.usuario.infrastructure.repository.UsuarioRepository;

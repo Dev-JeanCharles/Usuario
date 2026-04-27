@@ -7,7 +7,8 @@ import com.javanauta.usuario.application.mapper.UsuarioMapper;
 import com.javanauta.usuario.domain.model.Endereco;
 import com.javanauta.usuario.domain.model.Telefone;
 import com.javanauta.usuario.domain.model.Usuario;
-import com.javanauta.usuario.domain.ports.UsuarioRepositoryPort;
+import com.javanauta.usuario.domain.ports.in.UsuarioUseCase;
+import com.javanauta.usuario.domain.ports.out.UsuarioRepositoryPort;
 import com.javanauta.usuario.infrastructure.exceptions.ConflictException;
 import com.javanauta.usuario.infrastructure.exceptions.ResourceNotFoundException;
 import com.javanauta.usuario.infrastructure.security.JwtUtil;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 @Service
 @RequiredArgsConstructor
-public class UsuarioService {
+public class UsuarioService implements UsuarioUseCase {
     private final UsuarioRepositoryPort usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;

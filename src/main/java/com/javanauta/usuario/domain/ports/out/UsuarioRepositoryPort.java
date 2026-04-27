@@ -1,4 +1,4 @@
-package com.javanauta.usuario.domain.ports;
+package com.javanauta.usuario.domain.ports.out;
 
 import com.javanauta.usuario.domain.model.Usuario;
 
