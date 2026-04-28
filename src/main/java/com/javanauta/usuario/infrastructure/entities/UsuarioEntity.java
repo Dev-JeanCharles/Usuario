@@ -28,9 +28,11 @@ public class UsuarioEntity implements UserDetails {
     private String senha;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @Builder.Default
     private List<EnderecoEntity> enderecoEntity = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @Builder.Default
     private List<TelefoneEntity> telefoneEntity = new ArrayList<>();
 
     @Override
