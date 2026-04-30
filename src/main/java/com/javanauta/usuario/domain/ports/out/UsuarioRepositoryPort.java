@@ -13,4 +13,5 @@ public interface UsuarioRepositoryPort {
     boolean existeEmail(String email);
 
     void deletarPorEmail(String email);
+
 }

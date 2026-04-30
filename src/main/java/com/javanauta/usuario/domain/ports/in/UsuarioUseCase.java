@@ -23,4 +23,5 @@ public interface UsuarioUseCase {
     TelefoneDTO atualizaTelefone(String token, Long idTelefone, TelefoneDTO telefoneDTO);
 
     void emailExiste(String email);
+
 }
