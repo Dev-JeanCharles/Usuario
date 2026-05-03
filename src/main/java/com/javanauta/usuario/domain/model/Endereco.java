@@ -1,13 +1,13 @@
-package com.javanauta.usuario.business.dto;
+package com.javanauta.usuario.domain.model;
 
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class EnderecoDTO {
+public class Endereco {
     private Long id;
     private String rua;
     private Long numero;

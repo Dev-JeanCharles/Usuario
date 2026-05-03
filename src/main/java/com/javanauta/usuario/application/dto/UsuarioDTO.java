@@ -1,4 +1,4 @@
-package com.javanauta.usuario.business.dto;
+package com.javanauta.usuario.application.dto;
 
 import lombok.*;
 
