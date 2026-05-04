@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.javanauta.usuario.infrastructure.exceptions.*;
 import com.javanauta.usuario.infrastructure.exceptions.IllegalArgumentException;
 import com.javanauta.usuario.infrastructure.exceptions.dto.ErrorResponseDTO;
+import com.javanauta.usuario.infrastructure.factory.ErrorResponseFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
