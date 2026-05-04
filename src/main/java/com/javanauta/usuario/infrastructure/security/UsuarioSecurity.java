@@ -1,17 +1,28 @@
 package com.javanauta.usuario.infrastructure.security;
 
-import com.javanauta.usuario.infrastructure.entities.UsuarioEntity;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-@AllArgsConstructor
-public class UsuarioSecurity implements UserDetails {
+public class UsuarioSecurity implements UserDetails, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    private final UsuarioEntity usuario;
+    @Getter
+    private final Long id;
+    private final String email;
+    private final String senha;
+
+    public UsuarioSecurity(Long id, String email, String senha) {
+        this.id = id;
+        this.email = email;
+        this.senha = senha;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -20,11 +31,11 @@ public class UsuarioSecurity implements UserDetails {
 
     @Override
     public String getPassword() {
-        return usuario.getSenha();
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return usuario.getEmail();
+        return email;
     }
 }
