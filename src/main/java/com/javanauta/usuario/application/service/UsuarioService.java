@@ -35,6 +35,7 @@ public class UsuarioService implements UsuarioUseCase {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
+    private static final String EMAIL_MESSAGE = "Email não localizado: ";
 
     private String extrairEmail(String token){
         return jwtUtil.extractEmailToken(token.substring(7));
@@ -68,7 +69,7 @@ public class UsuarioService implements UsuarioUseCase {
 
         Usuario usuario = usuarioRepository.buscarPorEmail(email)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Email não encontrado: " + email)
+                        new ResourceNotFoundException(EMAIL_MESSAGE + email)
                 );
 
         return usuarioMapper.paraUsuarioDTO(usuario);
@@ -88,7 +89,7 @@ public class UsuarioService implements UsuarioUseCase {
                 : null);
 
         Usuario usuario = usuarioRepository.buscarPorEmail(email).orElseThrow(() ->
-                new ResourceNotFoundException("Email não localizado: " + email));
+                new ResourceNotFoundException(EMAIL_MESSAGE + email));
 
         Usuario usuarioAtualizado = usuarioMapper.atualizaUsuario(usuarioDTO, usuario);
 
@@ -98,7 +99,7 @@ public class UsuarioService implements UsuarioUseCase {
     public EnderecoDTO cadastraEndereco(String token, EnderecoDTO dto) {
         String email = extrairEmail(token);
         Usuario usuario = usuarioRepository.buscarPorEmail(email).orElseThrow(() ->
-                new ResourceNotFoundException("Email não localizado: " + email));
+                new ResourceNotFoundException(EMAIL_MESSAGE + email));
 
         Endereco endereco = usuarioMapper.paraEnderecoDomain(dto);
 
@@ -121,7 +122,7 @@ public class UsuarioService implements UsuarioUseCase {
         String email = extrairEmail(token);
 
         Usuario usuario = usuarioRepository.buscarPorEmail(email).orElseThrow(() ->
-                new ResourceNotFoundException("Email não localizado: " + email));
+                new ResourceNotFoundException(EMAIL_MESSAGE + email));
 
         Telefone telefone = usuarioMapper.paraTelefoneDomain(dto);
 
@@ -145,7 +146,7 @@ public class UsuarioService implements UsuarioUseCase {
 
         Usuario usuario = usuarioRepository.buscarPorEmail(email)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Email não localizado: " + email));
+                        new ResourceNotFoundException(EMAIL_MESSAGE + email));
 
         Endereco endereco = usuario.getEnderecos()
                 .stream()
@@ -167,7 +168,7 @@ public class UsuarioService implements UsuarioUseCase {
 
         Usuario usuario = usuarioRepository.buscarPorEmail(email)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException("Email não localizado: " + email));
+                        new ResourceNotFoundException(EMAIL_MESSAGE + email));
 
         Telefone telefone = usuario.getTelefones()
                 .stream()

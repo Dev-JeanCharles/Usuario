@@ -19,5 +19,5 @@ public class TelefoneEntity {
     @Column(name = "ddd", length = 3)
     private String ddd;
     @Column(name = "usuario_id")
-    private Long usuario_id;
+    private Long usuarioId;
 }
