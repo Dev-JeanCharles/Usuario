@@ -11,9 +11,16 @@ import com.javanauta.usuario.domain.ports.in.UsuarioUseCase;
 import com.javanauta.usuario.domain.ports.out.UsuarioRepositoryPort;
 import com.javanauta.usuario.infrastructure.exceptions.ConflictException;
 import com.javanauta.usuario.infrastructure.exceptions.ResourceNotFoundException;
+import com.javanauta.usuario.infrastructure.exceptions.UnauthorizedException;
 import com.javanauta.usuario.infrastructure.security.JwtUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authorization.AuthorizationDeniedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +33,8 @@ public class UsuarioService implements UsuarioUseCase {
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
+
 
     private String extrairEmail(String token){
         return jwtUtil.extractEmailToken(token.substring(7));
@@ -38,6 +47,21 @@ public class UsuarioService implements UsuarioUseCase {
         return usuarioMapper.paraUsuarioDTO(
                 usuarioRepository.salvar(usuario)
         );
+    }
+
+    public String autenticarUsuario(UsuarioDTO usuarioDTO) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            usuarioDTO.getEmail(),
+                            usuarioDTO.getSenha())
+
+            );
+            return "Bearer " + jwtUtil.generateToken(authentication.getName());
+
+        } catch (BadCredentialsException | UsernameNotFoundException | AuthorizationDeniedException e) {
+            throw new UnauthorizedException("Usuário ou senha inválidos: ", e.getCause());
+        }
     }
 
     public UsuarioDTO buscarUsuarioPorEmail(String email) {
@@ -162,7 +186,7 @@ public class UsuarioService implements UsuarioUseCase {
     public void emailExiste(String email) {
 
         if (usuarioRepository.existeEmail(email)) {
-            throw new ConflictException("Email já cadastrado: " + email);
+            throw new ConflictException("Usuário já cadastrado: " + email);
         }
     }
 }
