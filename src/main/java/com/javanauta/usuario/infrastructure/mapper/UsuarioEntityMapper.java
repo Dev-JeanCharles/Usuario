@@ -48,7 +48,7 @@ public class UsuarioEntityMapper {
                 .complemento(endereco.getComplemento())
                 .estado(endereco.getEstado())
                 .numero(endereco.getNumero())
-                .usuario_id(usuarioId)
+                .usuarioId(usuarioId)
                 .build();
     }
 
@@ -88,7 +88,7 @@ public class UsuarioEntityMapper {
                 .cep(enderecoDTO.getCep() != null ? enderecoDTO.getCep() : entity.getCep())
                 .complemento(enderecoDTO.getComplemento() != null ? enderecoDTO.getComplemento() : entity.getComplemento())
                 .estado(enderecoDTO.getEstado() != null ? enderecoDTO.getEstado() : entity.getEstado())
-                .usuario_id(entity.getUsuario_id())
+                .usuarioId(entity.getUsuarioId())
                 .build();
     }
 
@@ -96,7 +96,7 @@ public class UsuarioEntityMapper {
         return TelefoneEntity.builder()
                 .numero(telefone.getNumero())
                 .ddd(telefone.getDdd())
-                .usuario_id(usuarioId)
+                .usuarioId(usuarioId)
                 .build();
     }
 
