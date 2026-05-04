@@ -1,6 +1,6 @@
 package com.javanauta.usuario.infrastructure.security;
 
-import com.javanauta.usuario.infrastructure.exceptions.ErrorResponseFactory;
+import com.javanauta.usuario.infrastructure.factory.ErrorResponseFactory;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

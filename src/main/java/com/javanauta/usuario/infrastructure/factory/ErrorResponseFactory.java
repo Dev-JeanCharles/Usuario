@@ -1,4 +1,4 @@
-package com.javanauta.usuario.infrastructure.exceptions;
+package com.javanauta.usuario.infrastructure.factory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
