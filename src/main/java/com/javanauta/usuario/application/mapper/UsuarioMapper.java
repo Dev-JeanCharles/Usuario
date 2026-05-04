@@ -77,6 +77,7 @@ public class UsuarioMapper {
         if(dto.getCep() != null) endereco.setCep(dto.getCep());
         if(dto.getEstado() != null) endereco.setEstado(dto.getEstado());
         if(dto.getComplemento() != null) endereco.setComplemento(dto.getComplemento());
+        if(dto.getId() != null) endereco.setId(endereco.getId());
 
         return endereco;
     }
@@ -84,6 +85,7 @@ public class UsuarioMapper {
     public Telefone atualizaTelefone(TelefoneDTO dto, Telefone telefone) {
         if(dto.getNumero() != null) telefone.setNumero(dto.getNumero());
         if(dto.getDdd() != null) telefone.setDdd(dto.getDdd());
+        if (dto.getId() != null) telefone.setId(telefone.getId());
 
         return telefone;
     }
