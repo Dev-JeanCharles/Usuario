@@ -1,6 +1,5 @@
 package com.javanauta.usuario.infrastructure.mapper;
 
-import com.javanauta.usuario.application.dto.EnderecoDTO;
 import com.javanauta.usuario.domain.model.Endereco;
 import com.javanauta.usuario.domain.model.Telefone;
 import com.javanauta.usuario.domain.model.Usuario;
@@ -77,19 +76,6 @@ public class UsuarioEntityMapper {
                                 .numero(entity.getNumero())
                                 .build()
                 ).collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public EnderecoEntity atualizaEndereco(EnderecoDTO enderecoDTO, EnderecoEntity entity) {
-        return EnderecoEntity.builder()
-                .id(entity.getId())
-                .rua(enderecoDTO.getRua() != null ? enderecoDTO.getRua() : entity.getRua())
-                .numero(enderecoDTO.getNumero() != null ? enderecoDTO.getNumero() : entity.getNumero())
-                .cidade(enderecoDTO.getCidade() != null ? enderecoDTO.getCidade() : entity.getCidade())
-                .cep(enderecoDTO.getCep() != null ? enderecoDTO.getCep() : entity.getCep())
-                .complemento(enderecoDTO.getComplemento() != null ? enderecoDTO.getComplemento() : entity.getComplemento())
-                .estado(enderecoDTO.getEstado() != null ? enderecoDTO.getEstado() : entity.getEstado())
-                .usuarioId(entity.getUsuarioId())
-                .build();
     }
 
     public TelefoneEntity paraTelefoneEntity(Telefone telefone, Long usuarioId) {
