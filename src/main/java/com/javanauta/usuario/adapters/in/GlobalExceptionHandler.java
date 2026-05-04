@@ -1,6 +1,5 @@
 package com.javanauta.usuario.adapters.in;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.javanauta.usuario.infrastructure.exceptions.*;
 import com.javanauta.usuario.infrastructure.exceptions.IllegalArgumentException;
 import com.javanauta.usuario.infrastructure.exceptions.dto.ErrorResponseDTO;
@@ -17,7 +16,7 @@ public class GlobalExceptionHandler {
     private final ErrorResponseFactory errorFactory;
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleResourceNotFoundException(ResourceNotFoundException exception, HttpServletRequest request) throws JsonProcessingException {
+    public ResponseEntity<ErrorResponseDTO> handleResourceNotFoundException(ResourceNotFoundException exception, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorFactory.build(
                 HttpStatus.NOT_FOUND,
                 exception.getMessage(),
@@ -26,7 +25,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ConflictException.class)
-    public ResponseEntity<ErrorResponseDTO> handleConflictException(ConflictException exception, HttpServletRequest request) throws JsonProcessingException {
+    public ResponseEntity<ErrorResponseDTO> handleConflictException(ConflictException exception, HttpServletRequest request)  {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorFactory.build(
                 HttpStatus.CONFLICT,
                 exception.getMessage(),
@@ -35,7 +34,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<ErrorResponseDTO> handleUnauthorizedException(UnauthorizedException exception, HttpServletRequest request) throws JsonProcessingException {
+    public ResponseEntity<ErrorResponseDTO> handleUnauthorizedException(UnauthorizedException exception, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorFactory.build(
                 HttpStatus.UNAUTHORIZED,
                 exception.getMessage(),
@@ -44,7 +43,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDTO> handleIllegalArgumentException(IllegalArgumentException exception, HttpServletRequest request) throws JsonProcessingException {
+    public ResponseEntity<ErrorResponseDTO> handleIllegalArgumentException(IllegalArgumentException exception, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorFactory.build(
                 HttpStatus.BAD_REQUEST,
                 exception.getMessage(),
