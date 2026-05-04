@@ -6,7 +6,6 @@ import com.javanauta.usuario.application.dto.UsuarioDTO;
 import com.javanauta.usuario.application.dto.ViaCepDTO;
 import com.javanauta.usuario.application.service.UsuarioService;
 import com.javanauta.usuario.application.service.ViaCepService;
-import com.javanauta.usuario.infrastructure.security.JwtUtil;
 import com.javanauta.usuario.infrastructure.security.SecurityConfig;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,9 +13,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,8 +23,6 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
     private final ViaCepService viaCepService;
 
     @PostMapping
@@ -69,13 +63,8 @@ public class UsuarioController {
     @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     @ApiResponse(responseCode = "500", description = "Erro de servidor")
     public ResponseEntity<String> login(@RequestBody UsuarioDTO dto) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        dto.getEmail(),
-                        dto.getSenha())
-        );
-        String token = jwtUtil.generateToken(authentication.getName());
-        return ResponseEntity.ok("Bearer " + token);    }
+        return ResponseEntity.ok(usuarioService.autenticarUsuario(dto));
+    }
 
     @PutMapping
     @Operation(summary = "Atualizar dados de Usuários",
